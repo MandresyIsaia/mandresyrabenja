@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.portfolio[data-theme="dark"] {
+  --bg: #090d14;
+  --surface: #111826;
+  --text: #e6edf6;
+  --muted: #90a0b8;
+  --border: #243247;
+  --accent: #bd6a2f;
+  --track: #1f2b3c;
+  --dot: #3e4e64;
+  --soft: #182131;
+}
+
+.portfolio[data-theme="light"] {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --text: #121a27;
+  --muted: #53627a;
+  --border: #d3dde9;
+  --accent: #9f4d19;
+  --track: #e6eaf0;
+  --dot: #bcc7d5;
+  --soft: #eef2f7;
+}
+
+.star-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  background-size: 220px 220px, 180px 180px, 140px 140px;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.9) 0.7px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.45) 0.6px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.25) 0.5px, transparent 1px);
+  animation: starDrift 18s linear infinite;
+}
+
+.star-layer::before,
+.star-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.85) 0.8px, transparent 1px);
+  background-size: 260px 260px;
+  opacity: 0.28;
+  animation: twinkle 4.8s ease-in-out infinite;
+}
+
+.star-layer::after {
+  background-size: 320px 320px;
+  animation-delay: 1.4s;
+}
+
+.orbital-glow {
+  position: fixed;
+  top: -16rem;
+  right: -12rem;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(189, 106, 47, 0.18), transparent 65%);
+}
+
+.typing {
+  border-right: 2px solid var(--accent);
+  width: fit-content;
+  animation: cursorBlink 1s steps(2, start) infinite;
+}
+
+.project-visual {
+  position: relative;
+}
+
+.project-visual-inner {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(159, 77, 25, 0.25), transparent 50%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  transition: transform 0.55s ease;
+}
+
+.project-content {
+  transition: transform 0.45s ease;
+}
+
+.project-item:hover .project-visual-inner {
+  transform: scale(1.06);
+}
+
+.project-item:hover .project-content {
+  transform: translateX(8px);
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  transition: background-color 0.2s ease;
+}
+
+.hero-link:hover {
+  background: var(--soft);
+}
+
+.info-card,
+.cert-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info-card:hover,
+.cert-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg) 93%, black);
+}
+
+.terminal-loader {
+  width: min(92vw, 440px);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.terminal-loader-track {
+  height: 8px;
+  width: 100%;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.terminal-loader-bar {
+  height: 100%;
+  width: 45%;
+  background: var(--accent);
+  animation: loaderSweep 1.2s ease-in-out infinite;
+}
+
+.loader-rocket {
+  animation: rocketShift 0.9s ease-in-out infinite alternate;
+}
+
+.footer-link {
+  display: inline-flex;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+@keyframes cursorBlink {
+  to {
+    border-color: transparent;
+  }
+}
+
+@keyframes starDrift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes loaderSweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+@keyframes rocketShift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-3px);
+  }
+}
