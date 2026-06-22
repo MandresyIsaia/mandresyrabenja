@@ -576,7 +576,7 @@ export default function App() {
       window.removeEventListener("resize", updateActiveSection);
     };
   }, []);
-  const { displayedText, isComplete } = useTypewriter(t.brand, 130);
+  
 
   return (
     <div data-theme={theme} className="portfolio min-h-screen bg-[var(--bg)] text-[var(--text)]">
@@ -669,10 +669,7 @@ export default function App() {
         <motion.section id="home" className="flex min-h-[90vh] items-start pt-20 pb-16 md:pt-28 md:pb-24" {...fadeInUp}>
           <div className="w-full px-1 md:px-4">
             <p className="text-xs tracking-[0.2em] text-[var(--muted)]">MISSION LOG 01</p>
-            <h1 className="mt-3 text-5xl font-semibold leading-none sm:text-7xl">
-              {displayedText}
-              {!isComplete && <span className="animate-pulse">|</span>}
-            </h1>
+            <h1 className="typing mt-3 text-5xl font-semibold leading-none sm:text-7xl">{typedBrand}</h1>
             
             {/* <p className="mt-3 text-sm text-[var(--muted)]">{t.role}</p> */}
             <p className="mt-8  text-xl font-medium text-[var(--text)] sm:text-2xl">{t.headline}</p>
